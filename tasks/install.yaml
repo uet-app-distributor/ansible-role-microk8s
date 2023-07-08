@@ -1,0 +1,22 @@
+---
+- name: Update repositories cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install Microk8s
+  community.general.snap:
+    name: microk8s
+    classic: true
+    channel: "{{ microk8s_version }}"
+
+- name: Add current user to group 'microk8s'
+  ansible.builtin.user:
+    name: "{{ ansible_facts['ansible_user_id'] }}"
+    group: microk8s
+
+- name: Recursively change ownership of ~/.kube
+  ansible.builtin.file:
+    path: ~/.kube
+    state: directory
+    recurse: yes
+    owner: "{{ ansible_facts['ansible_user_id'] }}"
