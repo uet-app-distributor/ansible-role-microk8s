@@ -1,7 +1,8 @@
 ---
-- name: Update repositories cache
+- name: Install snapd
   ansible.builtin.apt:
-    update_cache: yes
+    name: snapd
+    state: present
 
 - name: Install Microk8s
   community.general.snap:
