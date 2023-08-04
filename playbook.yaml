@@ -1,0 +1,6 @@
+---
+- name: Deploy MicroK8s
+  hosts: uad-server
+  remote_user: thainm_uet
+  roles:
+    - microk8s
