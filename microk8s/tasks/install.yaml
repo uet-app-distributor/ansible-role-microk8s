@@ -20,3 +20,8 @@
     state: directory
     recurse: yes
     owner: "{{ ansible_facts['ansible_user_id'] }}"
+
+- name: Add kubectl alias
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: "alias kubectl='microk8s kubectl'"
